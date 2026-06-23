@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Test</title>
+</head>
+<body>
+
+<input type="text" id="message" placeholder="Enter message">
+<button onclick="sendMessage()">Send</button>
+
+<ul id="messages"></ul>
+
+<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.1.1/bundles/stomp.umd.min.js"></script>
+
+<script>
+
+const client = new StompJs.Client({
+    brokerURL: 'ws://localhost:8080/chat'
+});
+
+client.onConnect = () => {
+
+    console.log("CONNECTED");
+
+    client.subscribe('/topic/messages', (message) => {
+
+        console.log("MESSAGE RECEIVED");
+
+        const data = JSON.parse(message.body);
+
+        const li = document.createElement("li");
+        li.textContent = data.content;
+
+        document.getElementById("messages").appendChild(li);
+    });
+};
+
+client.activate();
+
+function sendMessage() {
+
+    const content = document.getElementById("message").value;
+
+    client.publish({
+        destination: "/app/send",
+        body: JSON.stringify({
+            senderId: 2,
+            receiverId: 4,
+            content: content
+        })
+    });
+
+    document.getElementById("message").value = "";
+}
+
+window.sendMessage = sendMessage;
+
+</script>
+</body>
+</html>
