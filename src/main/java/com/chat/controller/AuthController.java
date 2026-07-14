@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin("*")
+@CrossOrigin(origins=
+	    "https://pesuda.vercel.app")
 public class AuthController {
 
     private final UserRepository userRepository;

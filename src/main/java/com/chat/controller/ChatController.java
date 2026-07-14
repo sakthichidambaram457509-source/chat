@@ -8,7 +8,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/all-messages")
-@CrossOrigin("*")
+@CrossOrigin(origins=
+"https://pesuda.vercel.app")
 public class ChatController {
 
     private final MessageRepository messageRepository;

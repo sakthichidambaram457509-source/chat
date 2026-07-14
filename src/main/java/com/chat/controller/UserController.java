@@ -8,7 +8,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin("*")
+@CrossOrigin(origins=
+"https://pesuda.vercel.app")
 public class UserController {
 
     private final UserRepository userRepository;

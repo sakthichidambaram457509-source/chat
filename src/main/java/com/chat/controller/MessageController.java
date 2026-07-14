@@ -9,7 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/messages")
-@CrossOrigin("*")
+@CrossOrigin(origins=
+"https://pesuda.vercel.app")
 public class MessageController {
 
     private final MessageRepository messageRepository;
