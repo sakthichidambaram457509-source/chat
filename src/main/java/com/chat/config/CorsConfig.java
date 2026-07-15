@@ -13,7 +13,7 @@ public class CorsConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-
+    	 System.out.println("CORS CONFIG LOADED");
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(
